@@ -1,0 +1,104 @@
+package junit4;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+//import org.junit.internal.runners.calculator;
+import org.junit.runner.RunWith;
+
+
+
+
+//@RunWith(calculator.class)
+public class calculatorTest {
+
+    private static calculator calculator=new calculator();
+
+    
+    @Before
+    public void setUp() throws Exception {
+        calculator.clear();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
+    @Test(timeout=1000)
+    public void testAdd() {
+        calculator.add(2);
+        calculator.add(3);
+        assertEquals(5, calculator.getResult());
+    }
+
+    @Test
+    public void testSubstract() {
+        calculator.add(10);
+        calculator.substract(2);
+        assertEquals(8,calculator.getResult());
+    }
+
+    @Ignore("Multiply() Not yet implemented")  
+    @Test
+    public void testMultiply() {
+        
+    }
+
+    @Test(expected =ArithmeticException.class)
+    public void testDivide() {
+        calculator.add(8);
+        calculator.divide(0);
+        assertEquals(4,calculator.getResult());
+    }
+}
+package junit4;
+
+public class calculator {
+    private static int result;    //静态变量，用于存储运行结果
+    public void add(int n)
+    {
+        result=result+n;
+    }
+    
+    public void substract(int n)
+    {
+        result=result-1;        //Bug：正确的应该是result=result-n;
+    }
+    
+    public void multiply(int n)
+    {
+        //此方法尚未写好
+    }
+    
+    public void divide(int n)
+    {
+        result=result/n;
+    }
+    
+    public void square(int n)
+    {
+        result=n*n;
+    }
+    
+    public void squareRoot(int n)
+    {
+        for(;;);    //Bug:死循环
+    }
+    
+    public void clear()
+    {
+        result=0;  //将结果清零
+    }
+    
+    public int getResult()
+    {
+        return result;
+    }
+}
