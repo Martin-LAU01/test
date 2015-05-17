@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class 猜数字 {
+	public static void main(String[] args){
+		int number=(int)(Math.random()*101);
+		Scanner input= new Scanner(System.in);
+		System.out.println("Guess a magic number between 0 and 100");
+		int guess= -1;
+		while(guess!=number){
+			System.out.print("\nEnter your guess");
+			guess=input.nextInt();
+			if(guess==number)
+				System.out.println("恭喜你，猜对了，这个数是 "+ number);
+			else if (guess>number)
+				System.out.println("您猜的太大了，请继续猜");
+			else
+				System.out.println("您猜的太小了，请继续猜");			
+		}
+     }
+}
